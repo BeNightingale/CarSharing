@@ -1,0 +1,31 @@
+.gradle/
+.idea/
+course-remote-info.yaml
+course-info.yaml
+Car Sharing/Companies/task-info.yaml
+Car Sharing/Companies/task-remote-info.yaml
+Car Sharing/Companies/task.html
+Car Sharing/Initialization/task-info.yaml
+Car Sharing/Initialization/task-remote-info.yaml
+Car Sharing/Initialization/task.html
+Car Sharing/Relationship/task-info.yaml
+Car Sharing/Relationship/task-remote-info.yaml
+Car Sharing/Relationship/task.html
+Car Sharing/task/build/classes/java/main/carsharing/InvalidDatabaseProcessException.class
+Car Sharing/task/build/classes/java/main/carsharing/Main.class
+Car Sharing/task/build/classes/java/main/carsharing/util/SqlUtils.class
+Car Sharing/task/build/classes/java/main/carsharing/util/Utils.class
+Car Sharing/task/build/classes/java/test/CarSharingTest.class
+Car Sharing/task/out/production/classes/carsharing/Main.class
+Car Sharing/task/out/production/classes/carsharing/util/SqlUtils.class
+Car Sharing/task/out/production/classes/carsharing/util/Utils.class
+
+Car Sharing/Welcome, customer/task-info.yaml
+Car Sharing/Welcome, customer/task-remote-info.yaml
+Car Sharing/Welcome, customer/task.html
+
+
+
+
+Car Sharing/task/build/classes/java/test/DatabaseUtil.class
+
