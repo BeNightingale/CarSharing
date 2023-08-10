@@ -15,6 +15,12 @@ Car Sharing/task/build/classes/java/main/carsharing/InvalidDatabaseProcessExcept
 Car Sharing/task/build/classes/java/main/carsharing/Main.class
 Car Sharing/task/build/classes/java/main/carsharing/util/SqlUtils.class
 Car Sharing/task/build/classes/java/main/carsharing/util/Utils.class
+Car Sharing/task/build/tmp/*
+
+
+
+
+Car Sharing/task/build/classes/*
 Car Sharing/task/build/classes/java/test/CarSharingTest.class
 Car Sharing/task/out/production/classes/carsharing/Main.class
 Car Sharing/task/out/production/classes/carsharing/util/SqlUtils.class
