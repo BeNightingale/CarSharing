@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class CompanyRepository implements CompanyDao {
+
     private final Connection connection;
 
     public CompanyRepository(Connection connection) {
@@ -39,8 +40,8 @@ public class CompanyRepository implements CompanyDao {
         if (companyName == null || companyName.isEmpty()) {
             return -1;
         }
-        final String insertIntCompanyTableSql = "INSERT INTO COMPANY (NAME) VALUES (?)";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(insertIntCompanyTableSql, Statement.RETURN_GENERATED_KEYS)) {
+        final String insertIntoCompanyTableSql = "INSERT INTO COMPANY (NAME) VALUES (?)";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(insertIntoCompanyTableSql, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, companyName);
 
             // final ResultSet resultSet = preparedStatement.executeQuery();

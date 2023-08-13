@@ -1,0 +1,102 @@
+2023-08-12 20:31:01 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "CREATE TABLE IF NOT EXISTS CAR (ID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, NAME VARCHAR(250) UNIQUE NOT NULL, COMPANY_ID INTEGER NOT NULL),[*] CONSTRAINT FK_COMPANY_CAR FOREIGN KEY (CAR.ID) REFERENCES COMPANY (COMPANY.ID)"
+Syntax error in SQL statement "CREATE TABLE IF NOT EXISTS CAR (ID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, NAME VARCHAR(250) UNIQUE NOT NULL, COMPANY_ID INTEGER NOT NULL),[*] CONSTRAINT FK_COMPANY_CAR FOREIGN KEY (CAR.ID) REFERENCES COMPANY (COMPANY.ID)"; SQL statement:
+CREATE TABLE IF NOT EXISTS CAR (ID INTEGER NOT NULL auto_increment PRIMARY KEY, NAME VARCHAR(250) UNIQUE NOT NULL, COMPANY_ID INTEGER NOT NULL), CONSTRAINT fk_company_car FOREIGN KEY (CAR.ID) REFERENCES COMPANY (COMPANY.ID) [42000-200]
+2023-08-12 20:35:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "CREATE TABLE IF NOT EXISTS CAR (ID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, NAME VARCHAR(250) UNIQUE NOT NULL, COMPANY_ID INTEGER NOT NULL),[*] CONSTRAINT FK_COMPANY_CAR FOREIGN KEY (CAR.COMPANY_ID) REFERENCES COMPANY (COMPANY.ID)"
+Syntax error in SQL statement "CREATE TABLE IF NOT EXISTS CAR (ID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, NAME VARCHAR(250) UNIQUE NOT NULL, COMPANY_ID INTEGER NOT NULL),[*] CONSTRAINT FK_COMPANY_CAR FOREIGN KEY (CAR.COMPANY_ID) REFERENCES COMPANY (COMPANY.ID)"; SQL statement:
+CREATE TABLE IF NOT EXISTS CAR (ID INTEGER NOT NULL auto_increment PRIMARY KEY, NAME VARCHAR(250) UNIQUE NOT NULL, COMPANY_ID INTEGER NOT NULL), CONSTRAINT fk_company_car FOREIGN KEY (CAR.COMPANY_ID) REFERENCES COMPANY (COMPANY.ID) [42000-200]
+2023-08-12 20:47:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "CREATE TABLE IF NOT EXISTS CAR (ID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, NAME VARCHAR(250) UNIQUE NOT NULL, COMPANY_ID INTEGER NOT NULL, CONSTRAINT FK_COMPANY_CAR FOREIGN KEY (CAR.[*]COMPANY_ID) REFERENCES COMPANY (COMPANY.ID))"; oczekiwano "ASC, DESC, NULLS, ,, )"
+Syntax error in SQL statement "CREATE TABLE IF NOT EXISTS CAR (ID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, NAME VARCHAR(250) UNIQUE NOT NULL, COMPANY_ID INTEGER NOT NULL, CONSTRAINT FK_COMPANY_CAR FOREIGN KEY (CAR.[*]COMPANY_ID) REFERENCES COMPANY (COMPANY.ID))"; expected "ASC, DESC, NULLS, ,, )"; SQL statement:
+CREATE TABLE IF NOT EXISTS CAR (ID INTEGER NOT NULL auto_increment PRIMARY KEY, NAME VARCHAR(250) UNIQUE NOT NULL, COMPANY_ID INTEGER NOT NULL, CONSTRAINT fk_company_car FOREIGN KEY (CAR.COMPANY_ID) REFERENCES COMPANY (COMPANY.ID)) [42001-200]
+2023-08-12 20:50:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Nie można skasować "COMPANY" ponieważ zależy od "FK_COMPANY_CAR"
+Cannot drop "COMPANY" because "FK_COMPANY_CAR" depends on it; SQL statement:
+DROP TABLE IF EXISTS COMPANY [90107-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:98)
+	at org.h2.command.ddl.DropTable.update(DropTable.java:124)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:198)
+	at org.h2.command.Command.executeUpdate(Command.java:251)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
+	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
+	at carsharing.util.SqlUtils.dropTableCompanyIfExists(SqlUtils.java:19)
+	at carsharing.Main.main(Main.java:28)
+2023-08-12 20:50:25 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Nie można skasować "COMPANY" ponieważ zależy od "FK_COMPANY_CAR"
+Cannot drop "COMPANY" because "FK_COMPANY_CAR" depends on it; SQL statement:
+DROP TABLE IF EXISTS COMPANY [90107-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:98)
+	at org.h2.command.ddl.DropTable.update(DropTable.java:124)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:198)
+	at org.h2.command.Command.executeUpdate(Command.java:251)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
+	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
+	at carsharing.util.SqlUtils.dropTableCompanyIfExists(SqlUtils.java:19)
+	at carsharing.Main.main(Main.java:28)
+2023-08-12 21:48:37 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Nie można skasować "COMPANY" ponieważ zależy od "FK_COMPANY_CAR"
+Cannot drop "COMPANY" because "FK_COMPANY_CAR" depends on it; SQL statement:
+DROP TABLE IF EXISTS COMPANY [90107-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:98)
+	at org.h2.command.ddl.DropTable.update(DropTable.java:124)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:198)
+	at org.h2.command.Command.executeUpdate(Command.java:251)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
+	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
+	at carsharing.util.SqlUtils.dropTableCompanyIfExists(SqlUtils.java:19)
+	at carsharing.Main.main(Main.java:28)
+2023-08-12 21:49:34 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Nie można skasować "COMPANY" ponieważ zależy od "FK_COMPANY_CAR"
+Cannot drop "COMPANY" because "FK_COMPANY_CAR" depends on it; SQL statement:
+DROP TABLE IF EXISTS COMPANY [90107-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:98)
+	at org.h2.command.ddl.DropTable.update(DropTable.java:124)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:198)
+	at org.h2.command.Command.executeUpdate(Command.java:251)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
+	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
+	at carsharing.util.SqlUtils.dropTableCompanyIfExists(SqlUtils.java:19)
+	at carsharing.Main.main(Main.java:28)
+2023-08-12 21:49:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Nie można skasować "COMPANY" ponieważ zależy od "FK_COMPANY_CAR"
+Cannot drop "COMPANY" because "FK_COMPANY_CAR" depends on it; SQL statement:
+DROP TABLE IF EXISTS COMPANY [90107-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:98)
+	at org.h2.command.ddl.DropTable.update(DropTable.java:124)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:198)
+	at org.h2.command.Command.executeUpdate(Command.java:251)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
+	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
+	at carsharing.util.SqlUtils.dropTableCompanyIfExists(SqlUtils.java:19)
+	at carsharing.Main.main(Main.java:28)
+2023-08-12 21:50:06 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Nie można skasować "COMPANY" ponieważ zależy od "FK_COMPANY_CAR"
+Cannot drop "COMPANY" because "FK_COMPANY_CAR" depends on it; SQL statement:
+DROP TABLE IF EXISTS COMPANY [90107-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:98)
+	at org.h2.command.ddl.DropTable.update(DropTable.java:124)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:198)
+	at org.h2.command.Command.executeUpdate(Command.java:251)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
+	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
+	at carsharing.util.SqlUtils.dropTableCompanyIfExists(SqlUtils.java:19)
+	at carsharing.Main.main(Main.java:28)
