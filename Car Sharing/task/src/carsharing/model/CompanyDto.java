@@ -1,19 +1,12 @@
-package carsharing;
-
-import java.util.List;
+package carsharing.model;
 
 public class CompanyDto {
 
-    private Integer id;
+    private final Integer id;
     private final String name;
-    private List<CarDto> carDtoList;
 
     public CompanyDto(Integer id, String name) {
         this.id = id;
-        this.name = name;
-    }
-
-    public CompanyDto(String name) {
         this.name = name;
     }
 
@@ -21,16 +14,8 @@ public class CompanyDto {
         return id;
     }
 
-    public List<CarDto> getCarDtoList() {
-        return carDtoList;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setCarDtoList(List<CarDto> carDtoList) {
-        this.carDtoList = carDtoList;
     }
 
     @Override

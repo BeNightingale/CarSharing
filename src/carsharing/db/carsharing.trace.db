@@ -100,3 +100,157 @@ DROP TABLE IF EXISTS COMPANY [90107-200]
 	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
 	at carsharing.util.SqlUtils.dropTableCompanyIfExists(SqlUtils.java:19)
 	at carsharing.Main.main(Main.java:28)
+2023-08-14 19:23:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Nie można skasować "COMPANY" ponieważ zależy od "FK_COMPANY_CAR"
+Cannot drop "COMPANY" because "FK_COMPANY_CAR" depends on it; SQL statement:
+DROP TABLE IF EXISTS COMPANY [90107-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:98)
+	at org.h2.command.ddl.DropTable.update(DropTable.java:124)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:198)
+	at org.h2.command.Command.executeUpdate(Command.java:251)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
+	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
+	at carsharing.util.SqlUtils.dropTableCompanyIfExists(SqlUtils.java:23)
+	at carsharing.Main.initDatabaseTables(Main.java:37)
+	at carsharing.Main.main(Main.java:25)
+2023-08-14 20:14:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "CREATE TABLE IF NOT EXISTS CUSTOMER (ID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, NAME VARCHAR(250) UNIQUE NOT NULL, RENTED_CAR_ID INT  NULLABLE[*], CONSTRAINT FK_CAR_CUSTOMER FOREIGN KEY (RENTED_CAR_ID) REFERENCES CAR (ID))"; oczekiwano "(, FOR, UNSIGNED, INVISIBLE, VISIBLE, NOT, NULL, AS, DEFAULT, GENERATED, ON, NOT, NULL, AUTO_INCREMENT, BIGSERIAL, SERIAL, IDENTITY, NULL_TO_DEFAULT, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, PRIMARY, UNIQUE, NOT, NULL, COMMENT, CHECK, REFERENCES, ,, )"
+Syntax error in SQL statement "CREATE TABLE IF NOT EXISTS CUSTOMER (ID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, NAME VARCHAR(250) UNIQUE NOT NULL, RENTED_CAR_ID INT  NULLABLE[*], CONSTRAINT FK_CAR_CUSTOMER FOREIGN KEY (RENTED_CAR_ID) REFERENCES CAR (ID))"; expected "(, FOR, UNSIGNED, INVISIBLE, VISIBLE, NOT, NULL, AS, DEFAULT, GENERATED, ON, NOT, NULL, AUTO_INCREMENT, BIGSERIAL, SERIAL, IDENTITY, NULL_TO_DEFAULT, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, PRIMARY, UNIQUE, NOT, NULL, COMMENT, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE IF NOT EXISTS CUSTOMER (ID INTEGER NOT NULL auto_increment PRIMARY KEY, NAME VARCHAR(250) UNIQUE NOT NULL, RENTED_CAR_ID INT  NULLABLE, CONSTRAINT fk_car_customer FOREIGN KEY (RENTED_CAR_ID) REFERENCES CAR (ID)) [42001-200]
+2023-08-15 16:32:09 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabela "CUSTOMERS" nie istnieje
+Table "CUSTOMERS" not found; SQL statement:
+SELECT * FROM CUSTOMERS ORDER BY ID [42102-200]
+2023-08-20 00:10:32 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Nieprawidłowa wartość "2" parametru "columnIndex"
+Invalid value "2" for parameter "columnIndex" [90008-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:590)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.getInvalidValueException(DbException.java:280)
+	at org.h2.jdbc.JdbcResultSet.checkColumnIndex(JdbcResultSet.java:3212)
+	at org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:3251)
+	at org.h2.jdbc.JdbcResultSet.getString(JdbcResultSet.java:298)
+	at carsharing.repositories.CompanyRepository.getCompanyName(CompanyRepository.java:87)
+	at carsharing.Service.showRentedCarForCustomer(Service.java:164)
+	at carsharing.Service.logInCustomer(Service.java:130)
+	at carsharing.Service.runShareCarsEngine(Service.java:237)
+	at carsharing.Main.main(Main.java:35)
+2023-08-20 00:11:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Nieprawidłowa wartość "2" parametru "columnIndex"
+Invalid value "2" for parameter "columnIndex" [90008-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:590)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.getInvalidValueException(DbException.java:280)
+	at org.h2.jdbc.JdbcResultSet.checkColumnIndex(JdbcResultSet.java:3212)
+	at org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:3251)
+	at org.h2.jdbc.JdbcResultSet.getString(JdbcResultSet.java:298)
+	at carsharing.repositories.CompanyRepository.getCompanyName(CompanyRepository.java:87)
+	at carsharing.Service.showRentedCarForCustomer(Service.java:164)
+	at carsharing.Service.logInCustomer(Service.java:130)
+	at carsharing.Service.runShareCarsEngine(Service.java:237)
+	at carsharing.Main.main(Main.java:35)
+2023-08-20 00:20:25 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Nie można skasować "COMPANY" ponieważ zależy od "FK_COMPANY_CAR"
+Cannot drop "COMPANY" because "FK_COMPANY_CAR" depends on it; SQL statement:
+DROP TABLE IF EXISTS COMPANY [90107-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:98)
+	at org.h2.command.ddl.DropTable.update(DropTable.java:124)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:198)
+	at org.h2.command.Command.executeUpdate(Command.java:251)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
+	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
+	at carsharing.util.SqlUtils.dropTableCompanyIfExists(SqlUtils.java:23)
+	at carsharing.Main.initDatabaseTables(Main.java:42)
+	at carsharing.Main.main(Main.java:30)
+2023-08-20 00:29:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "CREATE TABLE IF NOT EXISTS CUSTOMER (ID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, NAME VARCHAR(250) UNIQUE NOT NULL, RENTED_CAR_ID INTEGER CONSTRAINT FK_CAR_CUSTOMER FOREIGN[*] KEY (RENTED_CAR_ID) REFERENCES CAR (ID))"; oczekiwano "PRIMARY, UNIQUE, NOT, NULL, COMMENT, CHECK, REFERENCES, ,, )"
+Syntax error in SQL statement "CREATE TABLE IF NOT EXISTS CUSTOMER (ID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, NAME VARCHAR(250) UNIQUE NOT NULL, RENTED_CAR_ID INTEGER CONSTRAINT FK_CAR_CUSTOMER FOREIGN[*] KEY (RENTED_CAR_ID) REFERENCES CAR (ID))"; expected "PRIMARY, UNIQUE, NOT, NULL, COMMENT, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE IF NOT EXISTS CUSTOMER (ID INTEGER NOT NULL auto_increment PRIMARY KEY, NAME VARCHAR(250) UNIQUE NOT NULL, RENTED_CAR_ID INTEGER CONSTRAINT fk_car_customer FOREIGN KEY (RENTED_CAR_ID) REFERENCES CAR (ID)) [42001-200]
+2023-08-20 10:31:42 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Kolumna "IS_RENTED" nie istnieje
+Column "IS_RENTED" not found; SQL statement:
+SELECT * FROM CAR WHERE COMPANY_ID = ? AND IS_RENTED = FALSE ORDER BY ID [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:163)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:145)
+	at org.h2.expression.condition.Comparison.optimize(Comparison.java:190)
+	at org.h2.expression.condition.ConditionAndOr.optimize(ConditionAndOr.java:136)
+	at org.h2.command.dml.Select.prepare(Select.java:1209)
+	at org.h2.command.Parser.prepareCommand(Parser.java:744)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:76)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:352)
+	at carsharing.repositories.CarRepository.getAllCarsPossibleToRent(CarRepository.java:62)
+	at carsharing.Service.rentCarForCustomer(Service.java:150)
+	at carsharing.Service.logInCustomer(Service.java:130)
+	at carsharing.Service.runShareCarsEngine(Service.java:240)
+	at carsharing.Main.main(Main.java:35)
+2023-08-20 10:51:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Zduplikowana nazwa kolumny "IS_RENTED"
+Duplicate column name "IS_RENTED"; SQL statement:
+ALTER TABLE CAR ADD COLUMN IS_RENTED BOOLEAN [42121-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.table.Table.setColumns(Table.java:446)
+	at org.h2.table.TableBase.<init>(TableBase.java:75)
+	at org.h2.table.RegularTable.<init>(RegularTable.java:126)
+	at org.h2.mvstore.db.MVTable.<init>(MVTable.java:113)
+	at org.h2.mvstore.db.MVTableEngine$Store.createTable(MVTableEngine.java:253)
+	at org.h2.mvstore.db.MVTableEngine.createTable(MVTableEngine.java:127)
+	at org.h2.mvstore.db.MVTableEngine.createTable(MVTableEngine.java:41)
+	at org.h2.schema.Schema.createTable(Schema.java:697)
+	at org.h2.command.ddl.AlterTableAlterColumn.cloneTableStructure(AlterTableAlterColumn.java:414)
+	at org.h2.command.ddl.AlterTableAlterColumn.copyData(AlterTableAlterColumn.java:301)
+	at org.h2.command.ddl.AlterTableAlterColumn.update(AlterTableAlterColumn.java:210)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:198)
+	at org.h2.command.Command.executeUpdate(Command.java:251)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
+	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
+	at carsharing.util.SqlUtils.alterTableCarAddColumn(SqlUtils.java:38)
+	at carsharing.Main.initDatabaseTables(Main.java:47)
+	at carsharing.Main.main(Main.java:30)
+2023-08-20 10:51:45 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Zduplikowana nazwa kolumny "IS_RENTED"
+Duplicate column name "IS_RENTED"; SQL statement:
+ALTER TABLE CAR ADD COLUMN IS_RENTED BOOLEAN [42121-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.table.Table.setColumns(Table.java:446)
+	at org.h2.table.TableBase.<init>(TableBase.java:75)
+	at org.h2.table.RegularTable.<init>(RegularTable.java:126)
+	at org.h2.mvstore.db.MVTable.<init>(MVTable.java:113)
+	at org.h2.mvstore.db.MVTableEngine$Store.createTable(MVTableEngine.java:253)
+	at org.h2.mvstore.db.MVTableEngine.createTable(MVTableEngine.java:127)
+	at org.h2.mvstore.db.MVTableEngine.createTable(MVTableEngine.java:41)
+	at org.h2.schema.Schema.createTable(Schema.java:697)
+	at org.h2.command.ddl.AlterTableAlterColumn.cloneTableStructure(AlterTableAlterColumn.java:414)
+	at org.h2.command.ddl.AlterTableAlterColumn.copyData(AlterTableAlterColumn.java:301)
+	at org.h2.command.ddl.AlterTableAlterColumn.update(AlterTableAlterColumn.java:210)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:198)
+	at org.h2.command.Command.executeUpdate(Command.java:251)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
+	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
+	at carsharing.util.SqlUtils.alterTableCarAddColumn(SqlUtils.java:38)
+	at carsharing.Main.initDatabaseTables(Main.java:47)
+	at carsharing.Main.main(Main.java:30)
+2023-08-20 10:54:22 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "UPDATE CAR SET (IS_RENTED =[*] ?) WHERE ID = ?"; oczekiwano "., ,, )"
+Syntax error in SQL statement "UPDATE CAR SET (IS_RENTED =[*] ?) WHERE ID = ?"; expected "., ,, )"; SQL statement:
+UPDATE CAR SET (IS_RENTED = ?) WHERE ID = ? [42001-200]

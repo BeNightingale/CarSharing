@@ -1,4 +1,6 @@
-package carsharing;
+package carsharing.repositories;
+
+import carsharing.model.CarDto;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -23,8 +25,8 @@ public class CarRepository implements CarDao {
             preparedStatement.setString(1, carName);
             preparedStatement.setInt(2, companyId);
             preparedStatement.executeUpdate();
-            //Pobranie wygenerowanego klucza gotową metodą getGeneratedKeys()!!!
-            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            // Getting generated key with method getGeneratedKeys()!
+            final ResultSet resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet.next())
                 return resultSet.getInt(1); // Statement.RETURN_GENERATED_KEYS this flag allows to take the generated key
         } catch (SQLException | NullPointerException ex) {
@@ -37,6 +39,46 @@ public class CarRepository implements CarDao {
     @Override
     public List<CarDto> getAllCars(int companyId) {
         final String selectSql = "SELECT * FROM CAR WHERE COMPANY_ID = ? ORDER BY ID";
+        return getCars(selectSql, companyId);
+    }
+
+    @Override
+    public List<CarDto> getAllCarsPossibleToRent(int companyId) {
+        final String selectSql = "SELECT * FROM CAR WHERE COMPANY_ID = ? AND (IS_RENTED = FALSE OR IS_RENTED IS NULL) ORDER BY ID";
+        return getCars(selectSql, companyId);
+    }
+
+    @Override
+    public CarDto getCar(int rentedCarId) {
+        final String selectSql = "SELECT * FROM CAR WHERE ID = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
+            preparedStatement.setInt(1, rentedCarId);
+            final ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            final Integer id = resultSet.getInt(1);
+            final String name = resultSet.getString(2);
+            int companyId = resultSet.getInt(3);
+            return new CarDto(id, name, companyId);
+        } catch (SQLException sqlEx) {
+            System.out.printf("No success in searching for a car in database with id = %s, %s%n", rentedCarId, sqlEx);
+            return null;
+        }
+    }
+
+    @Override
+    public int updateIsCarRented(int carId, boolean isCarRented) {
+        final String updateSql = "UPDATE CAR SET IS_RENTED = ? WHERE ID = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(updateSql)) {
+            preparedStatement.setBoolean(1, isCarRented);
+            preparedStatement.setInt(2, carId);
+            return preparedStatement.executeUpdate();
+        } catch (SQLException sqlEx) {
+            System.out.printf("No success in setting information: \"IS_RENTED = true\", for a car with id = %s, %s%n", carId, sqlEx);
+            return 0;
+        }
+    }
+
+    private List<CarDto> getCars(String selectSql, int companyId) {
         final List<CarDto> carDtoList = new ArrayList<>();
         try (final PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
             preparedStatement.setInt(1, companyId);

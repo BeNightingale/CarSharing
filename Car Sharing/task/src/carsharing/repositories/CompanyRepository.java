@@ -1,4 +1,6 @@
-package carsharing;
+package carsharing.repositories;
+
+import carsharing.model.CompanyDto;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -13,28 +15,6 @@ public class CompanyRepository implements CompanyDao {
         this.connection = connection;
     }
 
-    // returns the key (id) of inserted company
-    protected int insertCompany(CompanyDto companyDto) {
-        if (companyDto == null) {
-            return -1;
-        }
-        final String insertIntCompanyTableSql = "INSERT INTO COMPANY (NAME) VALUES (?)";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(insertIntCompanyTableSql, Statement.RETURN_GENERATED_KEYS)) {
-            preparedStatement.setString(1, companyDto.getName());
-
-            // final ResultSet resultSet = preparedStatement.executeQuery();
-            preparedStatement.executeUpdate();
-            //Pobranie wygenerowanego klucza gotową metodą getGeneratedKeys()!!!
-            ResultSet resultSet = preparedStatement.getGeneratedKeys();
-            if (resultSet.next())
-                return resultSet.getInt(1); // Statement.RETURN_GENERATED_KEYS this flag allows to take the generated key
-        } catch (SQLException | NullPointerException ex) {
-            System.out.println("Error " + ex);
-            return -1;
-        }
-        return -1;
-    }
-
     @Override
     public int insertCompany(String companyName) {
         if (companyName == null || companyName.isEmpty()) {
@@ -43,11 +23,9 @@ public class CompanyRepository implements CompanyDao {
         final String insertIntoCompanyTableSql = "INSERT INTO COMPANY (NAME) VALUES (?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(insertIntoCompanyTableSql, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, companyName);
-
-            // final ResultSet resultSet = preparedStatement.executeQuery();
             preparedStatement.executeUpdate();
-            //Pobranie wygenerowanego klucza gotową metodą getGeneratedKeys()!!!
-            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            // Getting generated key with method getGeneratedKeys()!
+            final ResultSet resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet.next())
                 return resultSet.getInt(1); // Statement.RETURN_GENERATED_KEYS this flag allows to take the generated key
         } catch (SQLException | NullPointerException ex) {
@@ -64,8 +42,8 @@ public class CompanyRepository implements CompanyDao {
         try (final Statement statement = connection.createStatement()) {
             final ResultSet resultSet = statement.executeQuery(selectSql);
             while (resultSet.next()) {
-                Integer id = resultSet.getInt(1);
-                String name = resultSet.getString(2);
+                final Integer id = resultSet.getInt(1);
+                final String name = resultSet.getString(2);
                 final CompanyDto companyDto = new CompanyDto(id, name);
                 companyDtoList.add(companyDto);
             }
@@ -74,5 +52,19 @@ public class CompanyRepository implements CompanyDao {
             return Collections.emptyList();
         }
         return companyDtoList;
+    }
+
+    @Override
+    public String getCompanyName(int companyId) {
+        final String selectSql = "SELECT NAME FROM COMPANY WHERE ID = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
+            preparedStatement.setInt(1, companyId);
+            final ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            return resultSet.getString(1);
+        } catch (SQLException sqlEx) {
+            System.out.printf("No success in searching for a company with id = %s, %s%n", companyId, sqlEx);
+            return null;
+        }
     }
 }
